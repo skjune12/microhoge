@@ -1,0 +1,21 @@
+nginx:
+  environment:
+    - "TZ=Asia/Tokyo"
+  image: nginx
+  ports:
+    - "80:80"
+  volumes:
+    - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+  links:
+    - ap1
+    - ap2
+
+ap1:
+  build: ap1
+  ports:
+    - "3100:3000"
+
+ap2:
+  build: ap2
+  ports:
+    - "3200:3000"
